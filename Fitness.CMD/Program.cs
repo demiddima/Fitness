@@ -11,20 +11,59 @@ namespace Fitness.CMD
             Console.WriteLine("Введите имя пользователя: ");
             string name = Console.ReadLine();
 
-            Console.WriteLine("Введите пол");
-            string gender = Console.ReadLine();
+            UserController userController = new UserController(name);
 
-            Console.WriteLine("Введите дату рождения");
-            DateTime birthDate = DateTime.Parse(Console.ReadLine()); //TODO: TryParse
 
-            Console.WriteLine("Введите вес");
-            double weight = double.Parse(Console.ReadLine());
+            if (userController.IsNewUser) //если новый пользователь true(свойство в нашем C), то
+            {
+                Console.WriteLine("Введите пол:"); //запрашивается пол
+                var gender = Console.ReadLine();
+                DateTime birthDate = ParseDateTime(); //Др
+                double weight = ParseDouble("вес"); //Вес
+                double height = ParseDouble("рост"); //Рост
 
-            Console.WriteLine("Введите рост");
-            double height = double.Parse(Console.ReadLine());
+                userController.SetNewUserData(gender, birthDate, weight, height); 
+            }
 
-            UserController userController = new UserController(name, gender, birthDate, weight, height);
-            userController.Save();
+            Console.WriteLine(userController.CurrentUser);
+        }
+
+
+
+        static double ParseDouble(string name)
+        {
+            while (true)
+            {
+                Console.Write($"Введите {name}: ");
+                if (double.TryParse(Console.ReadLine(), out double value)) //Если удалось преобразовать в double, значит всё норм, возвращаем это значение
+                {
+                    return value;
+                }
+                else
+                {
+                    Console.WriteLine($"Неверный формат гендера: {name}");
+                }
+            }
+        }
+
+        static DateTime ParseDateTime()
+        {
+            DateTime birthDate;
+
+            while (true)
+            {
+                Console.Write("Введите дату рождения(dd.MM.yyyy): ");
+                if (DateTime.TryParse(Console.ReadLine(), out birthDate)) //Если удалось преобразовать в DateTime, значит всё норм, возвращаем это значение
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine($"Неверный формат даты рождения");
+                }
+            }
+
+            return birthDate;
         }
     }
 }

@@ -9,6 +9,7 @@ namespace Fitness.BL.Model
     /// <summary>
     /// Gender.
     /// </summary>
+    [Serializable]
     public class Gender
     {
         /// <summary>
@@ -24,8 +25,9 @@ namespace Fitness.BL.Model
         {
             if (string.IsNullOrWhiteSpace(name))
             {
-                throw new ArgumentNullException("Название пола не может быть пустым или null");
+                throw new ArgumentNullException("Название пола не может быть пустым или null",nameof(name));
             }
+            Name = name;
         }
         public override string ToString()
         {
