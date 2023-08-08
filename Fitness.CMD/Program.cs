@@ -1,4 +1,5 @@
 ﻿using Fitness.BL.Controller;
+using Fitness.BL.Model;
 
 namespace Fitness.CMD
 {
@@ -12,6 +13,7 @@ namespace Fitness.CMD
             string name = Console.ReadLine();
 
             UserController userController = new UserController(name);
+            EatingController eatingController = new EatingController(userController.CurrentUser);
 
 
             if (userController.IsNewUser) //если новый пользователь true(свойство в нашем C), то
@@ -26,6 +28,42 @@ namespace Fitness.CMD
             }
 
             Console.WriteLine(userController.CurrentUser);
+            Console.WriteLine();
+
+
+            Console.WriteLine("Что вы хотите сделать?");
+            Console.WriteLine("E - ввести приём пищи");
+            var key = Console.ReadKey(); //создание вызова действий из консоли по ключу
+            if (key.Key == ConsoleKey.E)
+            {
+                var foods = EnterEating(); //вызов кортежа
+                eatingController.Add(foods.Food, foods.Weight); //С помощью кортежа добавляем в наш приём пищи продукт и его вес
+
+                foreach (var item in eatingController.Eating.Foods) //Поскольку это у нас словарик, то его можно перебрать таким образовм
+                {
+                    Console.WriteLine($"\t{item.Key} - {item.Value}");//И отобразить нужные данные
+                }
+            }
+
+            (Food Food, double Weight) EnterEating() //privat static - по умолчанию
+            {
+                Console.WriteLine("Введите название продукта");
+                var food = Console.ReadLine();
+
+                var calories = ParseDouble("калорийность");
+                var proteins = ParseDouble("белки");
+                var fats = ParseDouble("жиры");
+                var carbohydrates = ParseDouble("углеводы");
+
+                var weight = ParseDouble("вес порции");
+                var product = new Food(food, calories, proteins, fats, carbohydrates);
+
+                return (Food: product, Weight: weight); //кортеж возращает Tuple<Food, double>(product, weight)
+            }
+
+
+
+
         }
 
 
