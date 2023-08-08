@@ -34,6 +34,8 @@ namespace Fitness.CMD
             Console.WriteLine("Что вы хотите сделать?");
             Console.WriteLine("E - ввести приём пищи");
             var key = Console.ReadKey(); //создание вызова действий из консоли по ключу
+            Console.WriteLine();
+
             if (key.Key == ConsoleKey.E)
             {
                 var foods = EnterEating(); //вызов кортежа
@@ -46,7 +48,7 @@ namespace Fitness.CMD
             }
 
             (Food Food, double Weight) EnterEating() //privat static - по умолчанию
-            {
+            {          
                 Console.WriteLine("Введите название продукта");
                 var food = Console.ReadLine();
 

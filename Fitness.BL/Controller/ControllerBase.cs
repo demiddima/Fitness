@@ -25,11 +25,12 @@ namespace Fitness.BL.Controller
             {
                 if (fs.Length > 0 && formatter.Deserialize(fs) is T item)
                 {
-                    return item;
+                    return (T?)item;
                 }
                 else
                 {
-                    return default(T);
+                    Console.WriteLine("Пусто");
+                    return default;
                 }
             }
         }

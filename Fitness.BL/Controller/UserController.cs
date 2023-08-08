@@ -9,7 +9,6 @@ namespace Fitness.BL.Controller
     public class UserController : ControllerBase
     {
         private const string USERS_FILE_NAME = "users.dat";
-        private const string EATINGS_FILE_NAME = "eatings.dat";
 
         /// <summary>
         /// User application.

@@ -35,7 +35,7 @@ namespace Fitness.BL.Controller
 
         public void Add(Food food, double weight)
         {
-            var product = Foods.FirstOrDefault(f => f.Name.Equals(food.Name)); //Если такой продукт уже есть в списке, то добавляем к нему вес
+            var product = Foods.SingleOrDefault(f => f.Name == food.Name); //Если такой продукт уже есть в списке, то добавляем к нему вес
             if (product == null)
             {
                 Foods.Add(food);
@@ -50,9 +50,9 @@ namespace Fitness.BL.Controller
         }
 
         private void Save()
-  {
-      Save(FOODS_FILE_NAME,Foods);
-      Save(EATINGS_FILE_NAME,Eating);
-  }
+        {
+            Save(FOODS_FILE_NAME,Foods);
+            Save(EATINGS_FILE_NAME,Eating);
+        }
     }
 }

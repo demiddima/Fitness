@@ -12,11 +12,9 @@ namespace Fitness.BL.Controller.UserControllerTests
     [TestClass()]
     public class EatingControllerTests
     {
-
         [TestMethod()]
         public void AddTest()
         {
-            //Arrange
             var userName = Guid.NewGuid().ToString();
             var foodName = Guid.NewGuid().ToString();
             var rnd = new Random();
@@ -29,6 +27,7 @@ namespace Fitness.BL.Controller.UserControllerTests
 
             //Assert
             Assert.AreEqual(food.Name, eatingController.Eating.Foods.First().Key.Name);
+
         }
     }
 }
