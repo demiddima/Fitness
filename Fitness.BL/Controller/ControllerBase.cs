@@ -29,7 +29,6 @@ namespace Fitness.BL.Controller
                 }
                 else
                 {
-                    Console.WriteLine("Пусто");
                     return default;
                 }
             }
