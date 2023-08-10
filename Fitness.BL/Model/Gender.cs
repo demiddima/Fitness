@@ -12,6 +12,7 @@ namespace Fitness.BL.Model
     [Serializable]
     public class Gender
     {
+        public int Id { get; set; }
         /// <summary>
         /// Name gender.
         /// </summary>

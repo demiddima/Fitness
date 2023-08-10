@@ -12,6 +12,7 @@ namespace Fitness.BL.Model
     [Serializable]
     public class Food
     {
+        public int Id { get; set; }
         /// <summary>
         /// Name of food.
         /// </summary>
